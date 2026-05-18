@@ -14,16 +14,46 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrCreate(
-            ['email' => 'admin@admin.com'],
+        // Super Admin
+        $superAdmin = User::firstOrCreate(
+            ['email' => 'superadmin@admin.com'],
             ['name' => 'Super Admin', 'password' => Hash::make('password')]
         );
-        $user->assignRole('super_admin');
+        $superAdmin->assignRole('super_admin');
 
-        $user = User::firstOrCreate(
-            ['email' => 'user@admin.com'],
-            ['name' => 'User Account', 'password' => Hash::make('password')]
+        // Admin
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@admin.com'],
+            ['name' => 'Admin Account', 'password' => Hash::make('password')]
         );
-        $user->assignRole('user');
+        $admin->assignRole('admin');
+
+        // Pemilik Toko
+        $owner = User::firstOrCreate(
+            ['email' => 'owner@toko.com'],
+            ['name' => 'Pemilik Toko', 'password' => Hash::make('password')]
+        );
+        $owner->assignRole('pemilik_toko');
+
+        // Staf Toko
+        $staff = User::firstOrCreate(
+            ['email' => 'staff@toko.com'],
+            ['name' => 'Staf Toko', 'password' => Hash::make('password')]
+        );
+        $staff->assignRole('staf_toko');
+
+        // Pelanggan 1
+        $customer1 = User::firstOrCreate(
+            ['email' => 'customer@example.com'],
+            ['name' => 'John Doe', 'password' => Hash::make('password')]
+        );
+        $customer1->assignRole('pelanggan');
+
+        // Pelanggan 2
+        $customer2 = User::firstOrCreate(
+            ['email' => 'customer2@example.com'],
+            ['name' => 'Jane Smith', 'password' => Hash::make('password')]
+        );
+        $customer2->assignRole('pelanggan');
     }
 }

@@ -53,7 +53,20 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 NavigationGroup::make()
-                    ->label('Administration'),
+                    ->label('Administration')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Products & Catalog')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Orders & Sales')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Payments & Discounts')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Logistics')
+                    ->collapsed(false),
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()
