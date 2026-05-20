@@ -25,7 +25,25 @@ class StoreResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('owner_id')
+                    ->relationship('owner', 'name')
+                    ->required()
+                    ->label('Owner'),
+
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\Textarea::make('address')
+                    ->maxLength(65535)
+                    ->columnSpanFull(),
+
+                Forms\Components\TextInput::make('phone')
+                    ->tel()
+                    ->maxLength(255),
+
+                Forms\Components\Toggle::make('is_active')
+                    ->default(true),
             ]);
     }
 
@@ -33,7 +51,25 @@ class StoreResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('owner.name')
+                    ->label('Owner')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('address')
+                    ->limit(50),
+
+                Tables\Columns\TextColumn::make('phone'),
+
+                Tables\Columns\IconColumn::make('is_active')
+                    ->boolean(),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
