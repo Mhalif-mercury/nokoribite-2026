@@ -12,3 +12,5 @@ src/node_modules/
 src/.env
 # Planning
 nokoribite_planning.md
+# git
+.gitignore
